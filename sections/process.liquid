@@ -1,0 +1,132 @@
+{% comment %}
+  Process Section - Showcases the wellness journey steps
+{% endcomment %}
+
+<div class="bg-gray-50 py-16 sm:py-24">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center">
+      <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+        {{ section.settings.title }}
+      </h2>
+      <p class="mt-4 text-lg text-gray-500">
+        {{ section.settings.description }}
+      </p>
+    </div>
+
+    <div class="mt-16">
+      <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+        {% for block in section.blocks %}
+          <div class="relative bg-white p-6 rounded-lg shadow-lg animate-fade-in" {{ block.shopify_attributes }}>
+            {% if block.settings.icon != blank %}
+              <div class="w-12 h-12 rounded-full bg-brand-gradient flex items-center justify-center mb-4">
+                <img src="{{ block.settings.icon | img_url: '48x48' }}" 
+                     alt="{{ block.settings.title }}" 
+                     class="w-6 h-6">
+              </div>
+            {% endif %}
+            
+            <h3 class="text-xl font-bold text-gray-900 mb-2">
+              {{ block.settings.title }}
+            </h3>
+            
+            <p class="text-gray-500">
+              {{ block.settings.description }}
+            </p>
+            
+            {% if block.settings.button_text != blank and block.settings.button_link != blank %}
+              <div class="mt-4">
+                <a href="{{ block.settings.button_link }}" 
+                   class="text-gradient font-medium hover:opacity-80">
+                  {{ block.settings.button_text }} →
+                </a>
+              </div>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Process Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Our Wellness Process"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Section Description",
+      "default": "Discover our simple yet effective approach to achieving optimal wellness"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "process_step",
+      "name": "Process Step",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Step Icon"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Step Title",
+          "default": "Step Title"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Step Description",
+          "default": "Describe this step of the process"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button Text"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Process Steps",
+      "blocks": [
+        {
+          "type": "process_step",
+          "settings": {
+            "title": "Assessment",
+            "description": "Complete our comprehensive wellness assessment"
+          }
+        },
+        {
+          "type": "process_step",
+          "settings": {
+            "title": "Personalization",
+            "description": "Receive your personalized wellness plan"
+          }
+        },
+        {
+          "type": "process_step",
+          "settings": {
+            "title": "Implementation",
+            "description": "Start your journey with our guided support"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

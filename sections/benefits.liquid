@@ -1,0 +1,164 @@
+{% comment %}
+  Benefits Section - Highlights the key benefits of the wellness program
+{% endcomment %}
+
+<div class="bg-white py-16 sm:py-24">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center">
+      <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+        {{ section.settings.title }}
+      </h2>
+      <p class="mt-4 text-lg text-gray-500">
+        {{ section.settings.description }}
+      </p>
+    </div>
+
+    <div class="mt-16">
+      <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        {% for block in section.blocks %}
+          <div class="relative bg-gray-50 p-6 rounded-lg animate-fade-in" {{ block.shopify_attributes }}>
+            {% if block.settings.icon != blank %}
+              <div class="w-12 h-12 rounded-full bg-brand-gradient flex items-center justify-center mb-4">
+                <img src="{{ block.settings.icon | img_url: '48x48' }}" 
+                     alt="{{ block.settings.title }}" 
+                     class="w-6 h-6 text-white">
+              </div>
+            {% endif %}
+
+            <h3 class="text-xl font-bold text-gray-900 mb-2">
+              {{ block.settings.title }}
+            </h3>
+
+            <p class="text-gray-500">
+              {{ block.settings.description }}
+            </p>
+
+            {% if block.settings.stat != blank %}
+              <div class="mt-4 flex items-baseline">
+                <p class="text-2xl font-semibold text-gradient">
+                  {{ block.settings.stat }}
+                </p>
+                {% if block.settings.stat_label != blank %}
+                  <p class="ml-2 text-sm text-gray-500">
+                    {{ block.settings.stat_label }}
+                  </p>
+                {% endif %}
+              </div>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    {% if section.settings.cta_enabled %}
+      <div class="mt-16 text-center">
+        <a href="{{ section.settings.cta_link }}" 
+           class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-brand-gradient hover:opacity-90">
+          {{ section.settings.cta_text }}
+        </a>
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Benefits Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Program Benefits"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Section Description",
+      "default": "Experience transformative benefits with our comprehensive wellness program"
+    },
+    {
+      "type": "checkbox",
+      "id": "cta_enabled",
+      "label": "Show Call to Action Button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Button Text",
+      "default": "Start Your Journey"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "Button Link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Benefit",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Benefit Icon"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Benefit Title",
+          "default": "Benefit Title"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Benefit Description",
+          "default": "Describe this benefit"
+        },
+        {
+          "type": "text",
+          "id": "stat",
+          "label": "Statistic (optional)",
+          "info": "Add a compelling statistic"
+        },
+        {
+          "type": "text",
+          "id": "stat_label",
+          "label": "Statistic Label (optional)",
+          "info": "Add context to your statistic"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Benefits",
+      "blocks": [
+        {
+          "type": "benefit",
+          "settings": {
+            "title": "Natural Solutions",
+            "description": "All-natural, scientifically proven wellness solutions"
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "title": "Expert Support",
+            "description": "Guided support from certified wellness experts"
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "title": "Proven Results",
+            "description": "Measurable improvements in health and wellbeing"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

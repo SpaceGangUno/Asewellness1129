@@ -1,0 +1,96 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "ASE Wellness",
+    "theme_version": "1.0.0",
+    "theme_author": "ASE Wellness",
+    "theme_documentation_url": "",
+    "theme_support_url": ""
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "color",
+        "id": "gradient_start",
+        "label": "Gradient Start Color",
+        "default": "#4ade80"
+      },
+      {
+        "type": "color",
+        "id": "gradient_end",
+        "label": "Gradient End Color",
+        "default": "#38bdf8"
+      },
+      {
+        "type": "color",
+        "id": "text_color",
+        "label": "Text Color",
+        "default": "#111827"
+      },
+      {
+        "type": "color",
+        "id": "background_color",
+        "label": "Background Color",
+        "default": "#ffffff"
+      }
+    ]
+  },
+  {
+    "name": "Typography",
+    "settings": [
+      {
+        "type": "font_picker",
+        "id": "heading_font",
+        "label": "Headings",
+        "default": "helvetica_n4"
+      },
+      {
+        "type": "font_picker",
+        "id": "body_font",
+        "label": "Body text",
+        "default": "helvetica_n4"
+      }
+    ]
+  },
+  {
+    "name": "Social Media",
+    "settings": [
+      {
+        "type": "text",
+        "id": "social_instagram_link",
+        "label": "Instagram link"
+      },
+      {
+        "type": "text",
+        "id": "social_facebook_link",
+        "label": "Facebook link"
+      },
+      {
+        "type": "text",
+        "id": "social_twitter_link",
+        "label": "Twitter link"
+      }
+    ]
+  },
+  {
+    "name": "Contact Information",
+    "settings": [
+      {
+        "type": "text",
+        "id": "contact_email",
+        "label": "Contact email"
+      },
+      {
+        "type": "text",
+        "id": "contact_phone",
+        "label": "Contact phone number"
+      },
+      {
+        "type": "text",
+        "id": "business_hours",
+        "label": "Business hours"
+      }
+    ]
+  }
+]

@@ -1,0 +1,43 @@
+{% comment %}
+  Converted from Footer.tsx to Shopify section
+{% endcomment %}
+
+<footer class="bg-gray-900 text-white">
+  <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div>
+        <h3 class="text-lg font-semibold mb-4">{{ shop.name }}</h3>
+        <p class="text-gray-400">Wellness solutions for a better life</p>
+      </div>
+      
+      <div>
+        <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+        <ul class="space-y-2">
+          <li><a href="/" class="text-gray-400 hover:text-white">Home</a></li>
+          <li><a href="/products" class="text-gray-400 hover:text-white">Products</a></li>
+          <li><a href="/pages/process" class="text-gray-400 hover:text-white">Process</a></li>
+          <li><a href="/pages/benefits" class="text-gray-400 hover:text-white">Benefits</a></li>
+        </ul>
+      </div>
+      
+      <div>
+        <h3 class="text-lg font-semibold mb-4">Contact</h3>
+        <ul class="space-y-2 text-gray-400">
+          <li>{{ shop.email }}</li>
+          <li>{{ shop.address.phone }}</li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="mt-8 pt-8 border-t border-gray-800 text-center text-gray-400">
+      <p>&copy; {{ 'now' | date: "%Y" }} {{ shop.name }}. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": []
+}
+{% endschema %}

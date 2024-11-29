@@ -1,0 +1,56 @@
+{
+  "current": {
+    "gradient_start": "#4ade80",
+    "gradient_end": "#38bdf8",
+    "text_color": "#111827",
+    "background_color": "#ffffff",
+    "heading_font": "helvetica_n4",
+    "body_font": "helvetica_n4",
+    "sections": {
+      "header": {
+        "type": "header",
+        "settings": {
+          "menu": "main-menu"
+        }
+      },
+      "footer": {
+        "type": "footer",
+        "settings": {}
+      }
+    },
+    "content_for_index": [
+      "hero",
+      "featured-products",
+      "process",
+      "benefits"
+    ]
+  },
+  "presets": {
+    "Default": {
+      "gradient_start": "#4ade80",
+      "gradient_end": "#38bdf8",
+      "text_color": "#111827",
+      "background_color": "#ffffff",
+      "heading_font": "helvetica_n4",
+      "body_font": "helvetica_n4",
+      "sections": {
+        "header": {
+          "type": "header",
+          "settings": {
+            "menu": "main-menu"
+          }
+        },
+        "footer": {
+          "type": "footer",
+          "settings": {}
+        }
+      },
+      "content_for_index": [
+        "hero",
+        "featured-products",
+        "process",
+        "benefits"
+      ]
+    }
+  }
+}
