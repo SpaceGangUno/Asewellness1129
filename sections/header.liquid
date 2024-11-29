@@ -1,41 +1,117 @@
-{% comment %}
-  Converted from Navbar.tsx to Shopify section
-{% endcomment %}
+{% assign has_announcement = section.settings.show_announcement %}
 
-<nav class="bg-white shadow-lg fixed w-full top-0 z-50">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex justify-between h-16">
-      <div class="flex-shrink-0 flex items-center">
-        <a href="/" class="text-2xl font-bold text-gradient">
-          {{ shop.name }}
-        </a>
-      </div>
-      
-      <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
-        <a href="/" class="inline-flex items-center px-1 pt-1 text-gray-900">Home</a>
-        <a href="/products" class="inline-flex items-center px-1 pt-1 text-gray-900">Products</a>
-        <a href="/pages/process" class="inline-flex items-center px-1 pt-1 text-gray-900">Process</a>
-        <a href="/pages/benefits" class="inline-flex items-center px-1 pt-1 text-gray-900">Benefits</a>
-      </div>
+<div class="relative bg-white" x-data="{ mobileMenuOpen: false }">
+  <nav class="relative {% if has_announcement %}mt-10{% endif %}">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <!-- Logo -->
+        <div class="flex-shrink-0 flex items-center">
+          {% if section.settings.logo != blank %}
+            <a href="/" class="block h-8 w-auto">
+              <img class="h-8 w-auto" src="{{ section.settings.logo | img_url: 'medium' }}" alt="{{ shop.name }}">
+            </a>
+          {% else %}
+            <a href="/" class="text-2xl font-bold text-gradient">
+              {{ shop.name }}
+            </a>
+          {% endif %}
+        </div>
 
-      <div class="flex items-center">
-        <a href="/cart" class="p-2 text-gray-900">
-          Cart ({{ cart.item_count }})
-        </a>
+        <!-- Desktop Navigation -->
+        <div class="hidden md:flex md:items-center md:space-x-8">
+          {% for link in linklists[section.settings.menu].links %}
+            <a href="{{ link.url }}" 
+               class="text-base font-medium text-gray-500 hover:text-gray-900 {% if link.active %}text-gray-900{% endif %}">
+              {{ link.title }}
+            </a>
+          {% endfor %}
+        </div>
+
+        <!-- Cart and Mobile Menu Button -->
+        <div class="flex items-center">
+          <a href="/cart" class="p-2 text-gray-400 hover:text-gray-500">
+            <span class="sr-only">Cart</span>
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
+            </svg>
+            {% if cart.item_count > 0 %}
+              <span class="absolute top-0 right-0 -mt-1 -mr-1 h-4 w-4 rounded-full bg-brand-gradient flex items-center justify-center text-xs font-bold text-white">
+                {{ cart.item_count }}
+              </span>
+            {% endif %}
+          </a>
+
+          <!-- Mobile menu button -->
+          <button @click="mobileMenuOpen = !mobileMenuOpen" 
+                  type="button" 
+                  class="md:hidden ml-2 bg-white p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-green-500" 
+                  aria-controls="mobile-menu" 
+                  aria-expanded="false">
+            <span class="sr-only">Open menu</span>
+            <svg class="h-6 w-6" x-show="!mobileMenuOpen" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+            <svg class="h-6 w-6" x-show="mobileMenuOpen" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+          </button>
+        </div>
       </div>
     </div>
-  </div>
-</nav>
+
+    <!-- Mobile menu -->
+    <div class="md:hidden" id="mobile-menu" x-show="mobileMenuOpen">
+      <div class="pt-2 pb-3 space-y-1">
+        {% for link in linklists[section.settings.menu].links %}
+          <a href="{{ link.url }}" 
+             class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 {% if link.active %}bg-gray-50 text-gray-900{% endif %}">
+            {{ link.title }}
+          </a>
+        {% endfor %}
+      </div>
+    </div>
+  </nav>
+</div>
 
 {% schema %}
 {
   "name": "Header",
   "settings": [
     {
-      "type": "text",
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
+      "type": "link_list",
       "id": "menu",
-      "label": "Menu"
+      "label": "Menu",
+      "default": "main-menu"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_announcement",
+      "label": "Show announcement bar",
+      "default": true
     }
   ]
 }
 {% endschema %}
+
+{% stylesheet %}
+.text-gradient {
+  background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+{% endstylesheet %}
+
+{% javascript %}
+// Add Alpine.js for mobile menu functionality
+if (!window.Alpine) {
+  let script = document.createElement('script');
+  script.src = 'https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js';
+  script.defer = true;
+  document.head.appendChild(script);
+}
+{% endjavascript %}

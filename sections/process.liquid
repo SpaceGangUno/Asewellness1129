@@ -1,49 +1,85 @@
-{% comment %}
-  Process Section - Showcases the wellness journey steps
-{% endcomment %}
-
-<div class="bg-gray-50 py-16 sm:py-24">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center">
-      <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
-        {{ section.settings.title }}
-      </h2>
-      <p class="mt-4 text-lg text-gray-500">
-        {{ section.settings.description }}
-      </p>
-    </div>
-
-    <div class="mt-16">
-      <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-        {% for block in section.blocks %}
-          <div class="relative bg-white p-6 rounded-lg shadow-lg animate-fade-in" {{ block.shopify_attributes }}>
-            {% if block.settings.icon != blank %}
-              <div class="w-12 h-12 rounded-full bg-brand-gradient flex items-center justify-center mb-4">
-                <img src="{{ block.settings.icon | img_url: '48x48' }}" 
-                     alt="{{ block.settings.title }}" 
-                     class="w-6 h-6">
-              </div>
-            {% endif %}
-            
-            <h3 class="text-xl font-bold text-gray-900 mb-2">
-              {{ block.settings.title }}
-            </h3>
-            
-            <p class="text-gray-500">
-              {{ block.settings.description }}
-            </p>
-            
-            {% if block.settings.button_text != blank and block.settings.button_link != blank %}
-              <div class="mt-4">
-                <a href="{{ block.settings.button_link }}" 
-                   class="text-gradient font-medium hover:opacity-80">
-                  {{ block.settings.button_text }} →
-                </a>
-              </div>
-            {% endif %}
-          </div>
-        {% endfor %}
+<div class="bg-gray-50 py-16 sm:py-24 lg:py-32">
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="relative">
+      <div class="text-center">
+        <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+          {{ section.settings.title }}
+        </h2>
+        {% if section.settings.description != blank %}
+          <p class="mt-4 max-w-3xl mx-auto text-xl text-gray-500">
+            {{ section.settings.description }}
+          </p>
+        {% endif %}
       </div>
+
+      <div class="mt-16">
+        <div class="relative">
+          {% if section.blocks.size > 0 %}
+            <div class="grid gap-8 lg:grid-cols-3">
+              {% for block in section.blocks %}
+                {% assign animation_delay = forloop.index | times: 200 %}
+                <div class="relative group" {{ block.shopify_attributes }}
+                     data-aos="fade-up" 
+                     data-aos-delay="{{ animation_delay }}"
+                     data-aos-duration="1000">
+                  <div class="relative p-6 bg-white rounded-lg shadow-xl hover:shadow-2xl transition-shadow duration-300">
+                    {% if block.settings.icon != blank %}
+                      <div class="w-12 h-12 rounded-xl bg-brand-gradient flex items-center justify-center mb-4">
+                        <img src="{{ block.settings.icon | img_url: '48x48' }}" 
+                             alt="{{ block.settings.title }}" 
+                             class="w-6 h-6">
+                      </div>
+                    {% else %}
+                      <div class="w-12 h-12 rounded-xl bg-brand-gradient flex items-center justify-center mb-4">
+                        <span class="text-white font-bold text-lg">{{ forloop.index }}</span>
+                      </div>
+                    {% endif %}
+
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">
+                      {{ block.settings.title }}
+                    </h3>
+
+                    <p class="text-gray-500 text-base">
+                      {{ block.settings.description }}
+                    </p>
+
+                    {% if block.settings.button_text != blank and block.settings.button_link != blank %}
+                      <div class="mt-4">
+                        <a href="{{ block.settings.button_link }}" 
+                           class="inline-flex items-center text-base font-medium text-gradient hover:opacity-75 transition-opacity">
+                          {{ block.settings.button_text }}
+                          <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                          </svg>
+                        </a>
+                      </div>
+                    {% endif %}
+                  </div>
+
+                  {% unless forloop.last %}
+                    <div class="hidden lg:block absolute top-1/2 left-full w-24 transform -translate-y-1/2">
+                      <div class="h-0.5 w-full bg-gradient-to-r from-green-500 to-blue-500"></div>
+                    </div>
+                  {% endunless %}
+                </div>
+              {% endfor %}
+            </div>
+          {% else %}
+            <div class="text-center text-gray-500 py-12">
+              <p>Add process steps to get started</p>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+
+      {% if section.settings.cta_text != blank and section.settings.cta_link != blank %}
+        <div class="mt-12 text-center">
+          <a href="{{ section.settings.cta_link }}" 
+             class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-brand-gradient hover:opacity-90 transition-opacity">
+            {{ section.settings.cta_text }}
+          </a>
+        </div>
+      {% endif %}
     </div>
   </div>
 </div>
@@ -55,14 +91,24 @@
     {
       "type": "text",
       "id": "title",
-      "label": "Section Title",
+      "label": "Title",
       "default": "Our Wellness Process"
     },
     {
       "type": "textarea",
       "id": "description",
-      "label": "Section Description",
+      "label": "Description",
       "default": "Discover our simple yet effective approach to achieving optimal wellness"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "CTA Button Text"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "CTA Button Link"
     }
   ],
   "blocks": [
@@ -130,3 +176,32 @@
   ]
 }
 {% endschema %}
+
+{% javascript %}
+// Initialize AOS (Animate On Scroll)
+if (typeof AOS === 'undefined') {
+  const link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.href = 'https://unpkg.com/aos@next/dist/aos.css';
+  document.head.appendChild(link);
+
+  const script = document.createElement('script');
+  script.src = 'https://unpkg.com/aos@next/dist/aos.js';
+  script.onload = function() {
+    AOS.init({
+      once: true,
+      offset: 50,
+      duration: 1000
+    });
+  };
+  document.head.appendChild(script);
+}
+{% endjavascript %}
+
+{% stylesheet %}
+.text-gradient {
+  background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+{% endstylesheet %}

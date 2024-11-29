@@ -1,0 +1,38 @@
+{% if section.settings.show_announcement %}
+  <div class="bg-brand-gradient text-white px-4 py-3">
+    <div class="max-w-7xl mx-auto text-center text-sm font-medium">
+      {% if section.settings.announcement_link != blank %}
+        <a href="{{ section.settings.announcement_link }}" class="hover:opacity-75">
+          {{ section.settings.announcement_text }}
+        </a>
+      {% else %}
+        <p>{{ section.settings.announcement_text }}</p>
+      {% endif %}
+    </div>
+  </div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Announcement Bar",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_announcement",
+      "label": "Show announcement",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "announcement_text",
+      "label": "Announcement text",
+      "default": "Free shipping on orders over $100"
+    },
+    {
+      "type": "url",
+      "id": "announcement_link",
+      "label": "Announcement link"
+    }
+  ]
+}
+{% endschema %}

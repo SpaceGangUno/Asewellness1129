@@ -13,19 +13,57 @@
       <meta name="description" content="{{ page_description | escape }}">
     {% endif %}
 
+    <!-- CSS -->
+    {{ 'base.css' | asset_url | stylesheet_tag }}
+    
+    <!-- Tailwind CDN for development - Replace with bundled version for production -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              'gradient-start': 'var(--gradient-start)',
+              'gradient-end': 'var(--gradient-end)'
+            }
+          }
+        }
+      }
+    </script>
+
+    <!-- Theme Scripts -->
+    <script src="{{ 'theme.js' | asset_url }}" defer="defer"></script>
+
     {{ content_for_header }}
 
-    {{ 'base.css' | asset_url | stylesheet_tag }}
-    {{ 'theme.js' | asset_url | script_tag: defer }}
+    <style>
+      :root {
+        --gradient-start: {{ settings.gradient_start }};
+        --gradient-end: {{ settings.gradient_end }};
+      }
+      
+      .bg-brand-gradient {
+        background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+      }
+      
+      .text-gradient {
+        background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+    </style>
   </head>
 
-  <body class="min-h-screen">
-    {% section 'header' %}
+  <body class="min-h-screen bg-white">
+    <div class="flex flex-col min-h-screen">
+      {% section 'announcement-bar' %}
+      {% section 'header' %}
 
-    <main role="main" id="MainContent">
-      {{ content_for_layout }}
-    </main>
+      <main role="main" id="MainContent" class="flex-grow">
+        {{ content_for_layout }}
+      </main>
 
-    {% section 'footer' %}
+      {% section 'footer' %}
+    </div>
   </body>
 </html>
