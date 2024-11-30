@@ -10,11 +10,11 @@
         alt="{{ section.settings.image.alt | escape }}"
         class="absolute inset-0 w-full h-full object-cover"
       >
-      <!-- Green overlay with customizable opacity -->
-      <div class="absolute inset-0 bg-gradient-to-b from-emerald-600 to-emerald-800" 
-           style="opacity: {{ overlay_opacity }}; mix-blend-mode: multiply;"></div>
+      <!-- Gradient overlay with customizable opacity -->
+      <div class="absolute inset-0 bg-gradient-to-br from-green-400/{{ section.settings.overlay_opacity }} via-teal-400/{{ section.settings.overlay_opacity }} to-blue-400/{{ section.settings.overlay_opacity }}"
+           style="mix-blend-mode: multiply;"></div>
     {% else %}
-      <div class="absolute inset-0 bg-gradient-to-b from-emerald-50 to-cyan-50"></div>
+      <div class="absolute inset-0 bg-gradient-to-br from-green-400 via-teal-400 to-blue-400"></div>
     {% endif %}
   </div>
 
@@ -90,16 +90,6 @@
       "unit": "%",
       "label": "Overlay Opacity",
       "default": 70
-    },
-    {
-      "type": "header",
-      "content": "Overlay Settings"
-    },
-    {
-      "type": "color",
-      "id": "overlay_color",
-      "label": "Overlay Color",
-      "default": "#047857"
     }
   ],
   "presets": [
