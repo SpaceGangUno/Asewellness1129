@@ -1,7 +1,7 @@
 {% assign show_announcement = section.settings.show_announcement %}
 {% assign overlay_opacity = section.settings.overlay_opacity | times: 0.01 %}
 
-<div class="relative min-h-screen">
+<div class="relative h-[600px] sm:h-[500px]">
   <!-- Background Image with Overlay -->
   <div class="absolute inset-0">
     {% if section.settings.image != blank %}
@@ -19,18 +19,18 @@
   </div>
 
   <!-- Content -->
-  <div class="relative min-h-screen flex flex-col items-center justify-center px-4 py-20">
+  <div class="relative h-full flex flex-col items-center justify-center px-4">
     <div class="max-w-7xl mx-auto w-full text-center">
-      <div class="inline-flex items-center px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-sm text-white text-sm font-medium mb-6">
+      <div class="inline-flex items-center px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-sm text-white text-sm font-medium mb-4">
         100% HOMEGROWN
       </div>
       
-      <h1 class="text-5xl sm:text-6xl font-bold text-white leading-none mb-6">
+      <h1 class="text-4xl sm:text-5xl font-bold text-white leading-none mb-4">
         <span class="block">{{ section.settings.heading }}</span>
         <span class="block mt-2">{{ section.settings.subheading }}</span>
       </h1>
       
-      <p class="text-lg text-white/90 max-w-xl mx-auto mb-8 leading-relaxed">
+      <p class="text-base sm:text-lg text-white/90 max-w-xl mx-auto mb-6 leading-relaxed">
         {{ section.settings.description }}
       </p>
       
