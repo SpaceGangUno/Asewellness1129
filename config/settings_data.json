@@ -50,7 +50,7 @@
           "button_label": "EXPLORE TASTES",
           "button_link": "",
           "image": "shopify://shop_images/a-picture-of-a-selection-of-juices-for-a-brand-cal-7wqFdYeqR9a5mMAJPZXZjA-dFNE8oAxQVi8GTCePzeAxQ.png",
-          "overlay_opacity": 65,
+          "overlay_opacity": 75,
           "overlay_color": "#047857"
         }
       },
@@ -58,22 +58,15 @@
         "type": "featured-products",
         "settings": {
           "title": "Featured Products",
-          "description": "",
           "collection": "seamoss",
           "products_to_show": 8,
-          "show_vendor": false,
-          "show_description": true,
-          "show_view_all": true,
-          "view_all_text": "View all products"
+          "show_view_all": true
         }
       },
       "process": {
         "type": "process",
         "settings": {
-          "title": "Our Wellness Process",
-          "description": "Discover our simple yet effective approach to achieving optimal wellness",
-          "cta_text": "",
-          "cta_link": ""
+          "title": "Our Wellness Process"
         }
       },
       "benefits": {
