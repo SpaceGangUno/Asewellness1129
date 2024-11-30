@@ -103,67 +103,76 @@ export default function DetoxQuiz() {
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="bg-white text-emerald-600 px-8 py-3 rounded-full hover:bg-emerald-50 transition flex items-center space-x-2"
+          className="btn-primary bg-natural-gradient shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
         >
-          <Sparkles className="h-5 w-5" />
+          <Sparkles className="h-5 w-5 mr-2 animate-pulse-soft" />
           <span>Find Your Perfect Detox</span>
         </button>
       )}
 
       {isOpen && (
-        <div className="bg-white/95 backdrop-blur-sm rounded-xl p-6 max-w-xl animate-fade-in">
+        <div className="glass-effect rounded-2xl p-8 max-w-xl animate-fade-in shadow-2xl border border-white/20">
           {!recommendation ? (
             <div>
-              <h3 className="text-xl font-semibold text-emerald-900 mb-4">
+              <h3 className="text-2xl font-bold text-transparent bg-clip-text bg-natural-gradient mb-6">
                 {questions[currentQuestion].question}
               </h3>
-              <div className="grid grid-cols-2 gap-4">
-                {questions[currentQuestion].options.map((option) => {
+              <div className="grid grid-cols-2 gap-6">
+                {questions[currentQuestion].options.map((option, index) => {
                   const Icon = option.icon;
                   return (
                     <button
                       key={option.text}
                       onClick={() => handleAnswer(option.text)}
-                      className="flex flex-col items-center p-4 rounded-lg bg-emerald-50 hover:bg-emerald-100 transition"
+                      className="group flex flex-col items-center p-6 rounded-xl bg-white/10 hover:bg-white/20 transition-all duration-300 transform hover:scale-105"
+                      style={{ animationDelay: `${index * 100}ms` }}
                     >
-                      <Icon className="h-8 w-8 text-emerald-600 mb-2" />
-                      <span className="text-emerald-900">{option.text}</span>
+                      <div className="p-3 rounded-lg bg-natural-gradient mb-4 group-hover:scale-110 transition-transform duration-300">
+                        <Icon className="h-8 w-8 text-white" />
+                      </div>
+                      <span className="text-white text-lg font-medium">{option.text}</span>
                     </button>
                   );
                 })}
               </div>
             </div>
           ) : (
-            <div className="text-center">
-              <h3 className="text-2xl font-bold text-emerald-900 mb-4">
+            <div className="text-center animate-fade-in">
+              <h3 className="text-3xl font-bold text-transparent bg-clip-text bg-natural-gradient mb-4">
                 {recommendation.name}
               </h3>
-              <p className="text-emerald-700 mb-6">{recommendation.description}</p>
-              <div className="space-y-2 mb-6">
-                {recommendation.products.map((product: { name: string; price: number }) => (
-                  <div key={product.name} className="bg-emerald-50 p-3 rounded flex justify-between items-center">
-                    <span>{product.name}</span>
-                    <span className="font-semibold">${product.price.toFixed(2)}</span>
+              <p className="text-white/90 text-lg mb-8">{recommendation.description}</p>
+              <div className="space-y-4 mb-8">
+                {recommendation.products.map((product: { name: string; price: number }, index: number) => (
+                  <div 
+                    key={product.name} 
+                    className="bg-white/10 p-4 rounded-lg flex justify-between items-center transform hover:scale-102 transition-all duration-300"
+                    style={{ animationDelay: `${index * 100}ms` }}
+                  >
+                    <span className="text-white text-lg">{product.name}</span>
+                    <span className="text-xl font-semibold text-transparent bg-clip-text bg-natural-gradient">
+                      ${product.price.toFixed(2)}
+                    </span>
                   </div>
                 ))}
               </div>
-              <div className="flex space-x-4 justify-center">
+              <div className="flex space-x-6 justify-center">
                 <button
                   onClick={resetQuiz}
-                  className="bg-emerald-100 text-emerald-700 px-6 py-2 rounded-full hover:bg-emerald-200 transition"
+                  className="px-8 py-3 rounded-full bg-white/10 text-white hover:bg-white/20 transition-all duration-300 transform hover:scale-105"
                 >
                   Start Over
                 </button>
                 <button
                   onClick={handleAddToCart}
                   disabled={addedToCart}
-                  className={`flex items-center space-x-2 px-6 py-2 rounded-full transition ${
+                  className={`flex items-center space-x-3 px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105 ${
                     addedToCart
-                      ? 'bg-emerald-200 text-emerald-800 cursor-not-allowed'
-                      : 'bg-emerald-600 text-white hover:bg-emerald-700'
+                      ? 'bg-emerald-200/20 text-emerald-200 cursor-not-allowed'
+                      : 'bg-natural-gradient text-white hover:opacity-90'
                   }`}
                 >
-                  <ShoppingCart className="h-5 w-5" />
+                  <ShoppingCart className={`h-5 w-5 ${addedToCart ? '' : 'animate-pulse-soft'}`} />
                   <span>{addedToCart ? 'Added to Cart' : 'Add All to Cart'}</span>
                 </button>
               </div>
