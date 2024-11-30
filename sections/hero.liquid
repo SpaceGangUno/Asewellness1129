@@ -2,45 +2,46 @@
 
 <div class="relative min-h-screen bg-gradient-to-b from-emerald-50 to-cyan-50/50">
   <!-- Main Content -->
-  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <div class="relative max-w-7xl mx-auto px-4">
     <div class="flex flex-col min-h-screen">
       <!-- Product Image Section -->
-      <div class="relative flex-1 flex items-center justify-center py-12">
+      <div class="relative flex-1 flex items-center justify-center pt-20 pb-8">
         {% if section.settings.image != blank %}
           <div class="relative w-full max-w-md mx-auto">
-            <!-- Decorative circles -->
-            <div class="absolute -top-20 -right-20 w-40 h-40 rounded-full bg-cyan-100/50 blur-xl"></div>
-            <div class="absolute -bottom-20 -left-20 w-40 h-40 rounded-full bg-emerald-100/50 blur-xl"></div>
-            
-            <img 
-              src="{{ section.settings.image | img_url: '800x' }}" 
-              alt="{{ section.settings.image.alt | escape }}"
-              class="relative z-10 w-full h-auto object-contain"
-            >
+            <div class="relative rounded-3xl overflow-hidden">
+              <!-- Green overlay -->
+              <div class="absolute inset-0 bg-emerald-600/10 mix-blend-multiply z-10"></div>
+              
+              <img 
+                src="{{ section.settings.image | img_url: '800x' }}" 
+                alt="{{ section.settings.image.alt | escape }}"
+                class="relative w-full h-auto object-contain"
+              >
+            </div>
           </div>
         {% endif %}
       </div>
 
       <!-- Text Content Section -->
-      <div class="relative pb-20 text-center">
-        <div class="inline-flex items-center px-6 py-2 rounded-full bg-emerald-100/50 text-emerald-800 text-sm font-medium mb-8">
+      <div class="relative pb-16 text-center">
+        <div class="inline-flex items-center px-4 py-1.5 rounded-full bg-emerald-100/50 text-emerald-800 text-sm font-medium mb-4">
           100% HOMEGROWN
         </div>
         
-        <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold text-emerald-800 leading-none mb-6">
+        <h1 class="text-5xl sm:text-6xl font-bold text-emerald-800 leading-none mb-4">
           <span class="block">{{ section.settings.heading }}</span>
-          <span class="block mt-2">{{ section.settings.subheading }}</span>
+          <span class="block">{{ section.settings.subheading }}</span>
         </h1>
         
-        <p class="text-lg sm:text-xl text-emerald-700/80 max-w-2xl mx-auto mb-12 leading-relaxed px-4">
+        <p class="text-lg text-emerald-700/80 max-w-xl mx-auto mb-8 leading-relaxed px-4">
           {{ section.settings.description }}
         </p>
         
         {% if section.settings.button_label != blank %}
           <a href="{{ section.settings.button_link }}" 
-             class="inline-flex items-center px-8 py-4 rounded-full bg-emerald-700 text-white text-lg font-medium hover:bg-emerald-800 transition-colors duration-200">
+             class="inline-flex items-center px-6 py-3 rounded-full bg-emerald-700 text-white text-base font-medium hover:bg-emerald-800 transition-colors duration-200">
             {{ section.settings.button_label }}
-            <svg class="ml-2 -mr-1 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="ml-2 -mr-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
             </svg>
           </a>
