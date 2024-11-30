@@ -1,7 +1,7 @@
 {% assign show_announcement = section.settings.show_announcement %}
 {% assign overlay_opacity = section.settings.overlay_opacity | times: 0.01 %}
 
-<div class="relative h-[600px] sm:h-[500px]">
+<div class="relative h-[500px] sm:h-[500px]">
   <!-- Background Image with Overlay -->
   <div class="absolute inset-0">
     {% if section.settings.image != blank %}
@@ -26,7 +26,7 @@
         <span class="block mt-2">{{ section.settings.subheading }}</span>
       </h1>
       
-      <p class="text-base sm:text-lg text-white/90 max-w-xl mx-auto mb-6 leading-relaxed">
+      <p class="text-base sm:text-lg text-white/90 max-w-xl mx-auto mb-6">
         {{ section.settings.description }}
       </p>
       
