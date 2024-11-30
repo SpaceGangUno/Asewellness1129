@@ -1,12 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import DetoxQuiz from './DetoxQuiz';
 import { Sparkles } from 'lucide-react';
 
 export default function Hero() {
-  const handleQuizTrigger = () => {
-    const quizTrigger = document.querySelector('[data-quiz-trigger]') as HTMLElement;
-    quizTrigger?.click();
-  };
+  const [isQuizOpen, setIsQuizOpen] = useState(false);
 
   return (
     <div className="relative min-h-screen overflow-hidden">
@@ -36,7 +33,7 @@ export default function Hero() {
 
           <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
             <button 
-              onClick={handleQuizTrigger}
+              onClick={() => setIsQuizOpen(true)}
               className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-white text-emerald-900 text-lg font-semibold hover:bg-white/90 transition-all duration-200 transform hover:-translate-y-0.5"
             >
               <Sparkles className="h-6 w-6 mr-3" />
@@ -47,9 +44,11 @@ export default function Hero() {
             </button>
           </div>
 
-          <div className="hidden">
-            <DetoxQuiz />
-          </div>
+          {/* Quiz Component */}
+          <DetoxQuiz 
+            isOpen={isQuizOpen} 
+            onClose={() => setIsQuizOpen(false)} 
+          />
         </div>
       </div>
     </div>
