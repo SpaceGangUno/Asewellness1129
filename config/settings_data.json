@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "current": {
     "gradient_start": "#4ade80",
@@ -10,20 +19,73 @@
       "header": {
         "type": "header",
         "settings": {
-          "menu": "main-menu"
+          "menu": "main-menu",
+          "show_announcement": true
         }
       },
       "footer": {
         "type": "footer",
-        "settings": {}
+        "settings": {
+          "description": "Wellness solutions for a better life",
+          "menu_1_heading": "Quick Links",
+          "menu_1": "",
+          "menu_2_heading": "Information",
+          "menu_2": ""
+        }
+      },
+      "announcement-bar": {
+        "type": "announcement-bar",
+        "settings": {
+          "show_announcement": true,
+          "announcement_text": "Free shipping on orders over $100",
+          "announcement_link": ""
+        }
+      },
+      "hero": {
+        "type": "hero",
+        "settings": {
+          "heading": "THE PURE",
+          "subheading": "GOODNESS",
+          "description": "MORE VIBRANT LIFESTYLE STARTS WITH ASÉ! EMBRACE THE PURITY OF NATURE WITH OUR EXQUISITE LINE OF NATURAL JUICES!",
+          "button_label": "EXPLORE TASTES",
+          "button_link": "",
+          "image": "shopify://shop_images/a-yellow-wellness-shot-in-a-small-closed-2-oz-glas-JDZF2gunRxatIwmTnFARuQ-mmzl0eh1S9qwMgJKLiJKUQ.png"
+        }
+      },
+      "featured-products": {
+        "type": "featured-products",
+        "settings": {
+          "title": "Featured Products",
+          "description": "",
+          "collection": "",
+          "products_to_show": 8,
+          "show_vendor": false,
+          "show_description": true,
+          "show_view_all": true,
+          "view_all_text": "View all products"
+        }
+      },
+      "process": {
+        "type": "process",
+        "settings": {
+          "title": "Our Wellness Process",
+          "description": "Discover our simple yet effective approach to achieving optimal wellness",
+          "cta_text": "",
+          "cta_link": ""
+        }
+      },
+      "benefits": {
+        "type": "benefits",
+        "settings": {
+          "title": "Program Benefits",
+          "description": "Experience transformative benefits with our comprehensive wellness program",
+          "cta_enabled": true,
+          "cta_text": "Start Your Journey",
+          "cta_link": ""
+        }
       }
     },
-    "content_for_index": [
-      "hero",
-      "featured-products",
-      "process",
-      "benefits"
-    ]
+    "content_for_index": []
   },
   "presets": {
     "Default": {
@@ -45,12 +107,7 @@
           "settings": {}
         }
       },
-      "content_for_index": [
-        "hero",
-        "featured-products",
-        "process",
-        "benefits"
-      ]
+      "content_for_index": []
     }
   }
 }
