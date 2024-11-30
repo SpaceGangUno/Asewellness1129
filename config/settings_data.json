@@ -49,7 +49,9 @@
           "description": "MORE VIBRANT LIFESTYLE STARTS WITH ASÉ! EMBRACE THE PURITY OF NATURE WITH OUR EXQUISITE LINE OF NATURAL JUICES!",
           "button_label": "EXPLORE TASTES",
           "button_link": "",
-          "image": "shopify://shop_images/a-yellow-wellness-shot-in-a-small-closed-2-oz-glas-JDZF2gunRxatIwmTnFARuQ-mmzl0eh1S9qwMgJKLiJKUQ.png"
+          "image": "shopify://shop_images/a-yellow-wellness-shot-in-a-small-closed-2-oz-glas-JDZF2gunRxatIwmTnFARuQ-mmzl0eh1S9qwMgJKLiJKUQ.png",
+          "overlay_opacity": 60,
+          "overlay_color": "#047857"
         }
       },
       "featured-products": {
