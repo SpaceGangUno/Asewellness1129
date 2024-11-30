@@ -1,68 +1,50 @@
 {% assign show_announcement = section.settings.show_announcement %}
 
-<div class="relative min-h-screen bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50">
-  <!-- Decorative circles -->
-  <div class="absolute top-20 right-20 w-96 h-96 rounded-full bg-gradient-to-br from-emerald-200/30 to-teal-200/30 blur-3xl animate-float"></div>
-  <div class="absolute bottom-20 left-20 w-96 h-96 rounded-full bg-gradient-to-br from-cyan-200/30 to-blue-200/30 blur-3xl animate-float-delay"></div>
-  
+<div class="relative min-h-screen bg-gradient-to-b from-emerald-50 to-cyan-50/50">
+  <!-- Main Content -->
   <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="grid lg:grid-cols-2 gap-8 lg:gap-16 min-h-screen items-center">
-      <!-- Text Content -->
-      <div class="relative z-10 pt-24 md:pt-32 lg:pt-0 text-center lg:text-left">
-        <div class="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-emerald-500/10 to-teal-500/10 backdrop-blur-sm">
-          <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-600 font-medium">
-            100% HOMEGROWN
-          </span>
+    <div class="flex flex-col min-h-screen">
+      <!-- Product Image Section -->
+      <div class="relative flex-1 flex items-center justify-center py-12">
+        {% if section.settings.image != blank %}
+          <div class="relative w-full max-w-md mx-auto">
+            <!-- Decorative circles -->
+            <div class="absolute -top-20 -right-20 w-40 h-40 rounded-full bg-cyan-100/50 blur-xl"></div>
+            <div class="absolute -bottom-20 -left-20 w-40 h-40 rounded-full bg-emerald-100/50 blur-xl"></div>
+            
+            <img 
+              src="{{ section.settings.image | img_url: '800x' }}" 
+              alt="{{ section.settings.image.alt | escape }}"
+              class="relative z-10 w-full h-auto object-contain"
+            >
+          </div>
+        {% endif %}
+      </div>
+
+      <!-- Text Content Section -->
+      <div class="relative pb-20 text-center">
+        <div class="inline-flex items-center px-6 py-2 rounded-full bg-emerald-100/50 text-emerald-800 text-sm font-medium mb-8">
+          100% HOMEGROWN
         </div>
         
-        <h1 class="mt-6 lg:mt-8 text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold leading-none mb-4 lg:mb-6">
-          <span class="block text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-600">
-            {{ section.settings.heading }}
-          </span>
-          <span class="block mt-2 text-4xl sm:text-5xl lg:text-6xl xl:text-7xl text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-600">
-            {{ section.settings.subheading }}
-          </span>
+        <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold text-emerald-800 leading-none mb-6">
+          <span class="block">{{ section.settings.heading }}</span>
+          <span class="block mt-2">{{ section.settings.subheading }}</span>
         </h1>
         
-        <p class="text-base sm:text-lg lg:text-xl text-emerald-800/80 max-w-xl mx-auto lg:mx-0 mb-8 lg:mb-12 leading-relaxed">
+        <p class="text-lg sm:text-xl text-emerald-700/80 max-w-2xl mx-auto mb-12 leading-relaxed px-4">
           {{ section.settings.description }}
         </p>
         
-        <div class="flex flex-wrap justify-center lg:justify-start gap-4">
-          {% if section.settings.button_label != blank %}
-            <a href="{{ section.settings.button_link }}" 
-               class="group relative inline-flex items-center px-8 py-4 rounded-full overflow-hidden">
-              <span class="absolute inset-0 bg-gradient-to-r from-emerald-600 to-teal-600 transition-all duration-300 group-hover:scale-105"></span>
-              <span class="relative flex items-center text-white text-lg font-medium">
-                {{ section.settings.button_label }}
-                <svg class="ml-2 -mr-1 w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-200" 
-                     fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                </svg>
-              </span>
-            </a>
-          {% endif %}
-        </div>
-      </div>
-      
-      <!-- Image -->
-      <div class="relative order-first lg:order-last">
-        {% if section.settings.image != blank %}
-          <div class="relative aspect-square lg:aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl transform hover:scale-[1.02] transition-transform duration-500 max-w-lg mx-auto">
-            <div class="absolute inset-0 bg-gradient-to-br from-emerald-500/10 to-teal-500/10 mix-blend-overlay"></div>
-            <img 
-              src="{{ section.settings.image | img_url: '1000x' }}" 
-              alt="{{ section.settings.image.alt | escape }}"
-              class="absolute inset-0 w-full h-full object-cover"
-            >
-          </div>
-        {% else %}
-          <div class="aspect-square lg:aspect-[4/5] rounded-3xl bg-gradient-to-br from-emerald-100 to-teal-100 max-w-lg mx-auto"></div>
+        {% if section.settings.button_label != blank %}
+          <a href="{{ section.settings.button_link }}" 
+             class="inline-flex items-center px-8 py-4 rounded-full bg-emerald-700 text-white text-lg font-medium hover:bg-emerald-800 transition-colors duration-200">
+            {{ section.settings.button_label }}
+            <svg class="ml-2 -mr-1 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </a>
         {% endif %}
-        
-        <!-- Decorative elements -->
-        <div class="absolute -top-8 -right-8 w-32 h-32 rounded-full bg-gradient-to-br from-emerald-100 to-teal-100 opacity-80"></div>
-        <div class="absolute -bottom-8 -left-8 w-40 h-40 rounded-full bg-gradient-to-br from-teal-50 to-cyan-50 opacity-80"></div>
       </div>
     </div>
   </div>
@@ -115,19 +97,3 @@
   ]
 }
 {% endschema %}
-
-{% stylesheet %}
-@keyframes float {
-  0%, 100% { transform: translateY(0) rotate(0); }
-  50% { transform: translateY(-20px) rotate(5deg); }
-}
-
-.animate-float {
-  animation: float 20s ease-in-out infinite;
-}
-
-.animate-float-delay {
-  animation: float 20s ease-in-out infinite;
-  animation-delay: -10s;
-}
-{% endstylesheet %}
