@@ -15,19 +15,6 @@
 
   <!-- Content -->
   <div class="relative max-w-7xl mx-auto px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
-    <!-- Top Badge -->
-    <div class="inline-flex items-center px-4 py-2 rounded-full bg-emerald-800/50 backdrop-blur-sm mb-8">
-      <span class="text-white flex items-center">
-        <svg class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M8 14C8 14 9.5 16 12 16C14.5 16 16 14 16 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M9 9H9.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M15 9H15.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        Transform Your Life with Our Detox Programs
-      </span>
-    </div>
-
     <!-- Main Heading -->
     <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold text-white max-w-4xl mb-8">
       Start Your<br>
@@ -43,7 +30,7 @@
     </div>
 
     <!-- Feature Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mb-8">
       <!-- Reset Your Body -->
       <div class="bg-emerald-800/20 backdrop-blur-sm rounded-xl p-6 hover:bg-emerald-800/30 transition-all duration-300">
         <div class="flex items-center space-x-3 text-white mb-2">
@@ -75,6 +62,23 @@
         </div>
       </div>
     </div>
+
+    <!-- Transform Your Life Button -->
+    <div class="text-center">
+      <button onclick="window.location.href='/quiz'"
+              class="inline-flex items-center px-8 py-4 rounded-full bg-white text-emerald-900 text-lg font-semibold hover:bg-white/90 transition-all duration-200 transform hover:-translate-y-0.5">
+        <svg class="w-6 h-6 mr-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M8 14C8 14 9.5 16 12 16C14.5 16 16 14 16 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M9 9H9.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M15 9H15.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Transform Your Life with Our Detox Programs
+        <svg class="w-5 h-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+        </svg>
+      </button>
+    </div>
   </div>
 </div>
 
@@ -96,6 +100,12 @@
       "unit": "%",
       "label": "Overlay Opacity",
       "default": 70
+    },
+    {
+      "type": "url",
+      "id": "quiz_url",
+      "label": "Quiz URL",
+      "default": "/quiz"
     }
   ],
   "presets": [
