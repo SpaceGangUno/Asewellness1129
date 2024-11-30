@@ -20,52 +20,70 @@
     {% else %}
       <div class="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
         {% for product in collection.products limit: section.settings.products_to_show %}
-          <div class="group relative">
-            <div class="w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
-              {% if product.featured_image != blank %}
-                <img src="{{ product.featured_image | img_url: '500x' }}"
-                     alt="{{ product.featured_image.alt | escape }}"
-                     class="w-full h-full object-center object-cover group-hover:opacity-75">
-              {% else %}
-                {{ 'product-1' | placeholder_svg_tag: 'w-full h-full object-center object-cover' }}
-              {% endif %}
+          <div class="group">
+            <div class="relative">
+              <div class="w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
+                {% if product.featured_image != blank %}
+                  <img src="{{ product.featured_image | img_url: '500x' }}"
+                       alt="{{ product.featured_image.alt | escape }}"
+                       class="w-full h-full object-center object-cover group-hover:opacity-75">
+                {% else %}
+                  {{ 'product-1' | placeholder_svg_tag: 'w-full h-full object-center object-cover' }}
+                {% endif %}
 
-              {% unless product.available %}
-                <div class="absolute top-0 right-0 m-2">
-                  <span class="px-2 py-1 text-xs font-bold text-white bg-gray-900 bg-opacity-75 rounded">
-                    {{ 'products.product.sold_out' | t }}
-                  </span>
+                {% unless product.available %}
+                  <div class="absolute top-0 right-0 m-2">
+                    <span class="px-2 py-1 text-xs font-bold text-white bg-gray-900 bg-opacity-75 rounded">
+                      {{ 'products.product.sold_out' | t }}
+                    </span>
+                  </div>
+                {% endunless %}
+              </div>
+
+              <div class="mt-4">
+                <div class="flex items-center justify-between mb-2">
+                  <h3 class="text-sm text-gray-700">
+                    <a href="{{ product.url }}">
+                      {{ product.title }}
+                    </a>
+                  </h3>
+                  <p class="text-sm font-medium text-gray-900">
+                    {% if product.compare_at_price > product.price %}
+                      <span class="text-red-600">{{ product.price | money }}</span>
+                      <span class="text-gray-500 line-through ml-2">{{ product.compare_at_price | money }}</span>
+                    {% else %}
+                      {{ product.price | money }}
+                    {% endif %}
+                  </p>
                 </div>
-              {% endunless %}
-            </div>
 
-            <div class="mt-4 flex items-center justify-between">
-              <div>
-                <h3 class="text-sm text-gray-700">
-                  <a href="{{ product.url }}">
-                    <span aria-hidden="true" class="absolute inset-0"></span>
-                    {{ product.title }}
-                  </a>
-                </h3>
                 {% if section.settings.show_vendor and product.vendor != blank %}
                   <p class="mt-1 text-sm text-gray-500">{{ product.vendor }}</p>
                 {% endif %}
-              </div>
-              <p class="text-sm font-medium text-gray-900">
-                {% if product.compare_at_price > product.price %}
-                  <span class="text-red-600">{{ product.price | money }}</span>
-                  <span class="text-gray-500 line-through ml-2">{{ product.compare_at_price | money }}</span>
-                {% else %}
-                  {{ product.price | money }}
-                {% endif %}
-              </p>
-            </div>
 
-            {% if section.settings.show_description %}
-              <p class="mt-1 text-sm text-gray-500">
-                {{ product.description | strip_html | truncatewords: 15 }}
-              </p>
-            {% endif %}
+                {% if section.settings.show_description %}
+                  <p class="mt-1 text-sm text-gray-500">
+                    {{ product.description | strip_html | truncatewords: 15 }}
+                  </p>
+                {% endif %}
+
+                <!-- Primary Button -->
+                {% if section.settings.show_primary_button %}
+                  <a href="{{ product.url }}" 
+                     class="mt-4 w-full inline-flex items-center justify-center px-4 py-2 rounded-full {% if section.settings.button_style == 'gradient' %}bg-gradient-to-r from-emerald-600 to-teal-600 text-white hover:opacity-90{% else %}bg-emerald-600 text-white hover:bg-emerald-700{% endif %} transition-all duration-200 text-sm font-medium">
+                    {{ section.settings.primary_button_text | replace: '[price]', product.price | money }}
+                  </a>
+                {% endif %}
+
+                <!-- Secondary Button -->
+                {% if section.settings.show_secondary_button %}
+                  <a href="{{ product.url }}" 
+                     class="mt-2 w-full inline-flex items-center justify-center px-4 py-2 rounded-full border border-emerald-600 text-emerald-600 hover:bg-emerald-50 transition-all duration-200 text-sm font-medium">
+                    {{ section.settings.secondary_button_text }}
+                  </a>
+                {% endif %}
+              </div>
+            </div>
           </div>
         {% endfor %}
       </div>
@@ -73,7 +91,7 @@
       {% if section.settings.show_view_all and collection.products_count > section.settings.products_to_show %}
         <div class="text-center mt-12">
           <a href="{{ collection.url }}" 
-             class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-brand-gradient hover:opacity-90">
+             class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-gradient-to-r from-emerald-600 to-teal-600 hover:opacity-90">
             {{ section.settings.view_all_text }}
           </a>
         </div>
@@ -112,6 +130,10 @@
       "label": "Products to show"
     },
     {
+      "type": "header",
+      "content": "Product Information"
+    },
+    {
       "type": "checkbox",
       "id": "show_vendor",
       "label": "Show product vendor",
@@ -122,6 +144,55 @@
       "id": "show_description",
       "label": "Show product description",
       "default": true
+    },
+    {
+      "type": "header",
+      "content": "Button Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_primary_button",
+      "label": "Show primary button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "primary_button_text",
+      "label": "Primary button text",
+      "default": "Add to Cart - [price]",
+      "info": "Use [price] to display product price"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_secondary_button",
+      "label": "Show secondary button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "secondary_button_text",
+      "label": "Secondary button text",
+      "default": "Learn More"
+    },
+    {
+      "type": "select",
+      "id": "button_style",
+      "label": "Button style",
+      "options": [
+        {
+          "value": "solid",
+          "label": "Solid Color"
+        },
+        {
+          "value": "gradient",
+          "label": "Gradient"
+        }
+      ],
+      "default": "gradient"
+    },
+    {
+      "type": "header",
+      "content": "View All Button"
     },
     {
       "type": "checkbox",
@@ -143,7 +214,9 @@
         "products_to_show": 8,
         "show_vendor": false,
         "show_description": true,
-        "show_view_all": true
+        "show_view_all": true,
+        "show_primary_button": true,
+        "show_secondary_button": true
       }
     }
   ]
