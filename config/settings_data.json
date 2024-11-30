@@ -59,7 +59,7 @@
         "settings": {
           "title": "Featured Products",
           "description": "",
-          "collection": "",
+          "collection": "seamoss",
           "products_to_show": 8,
           "show_vendor": false,
           "show_description": true,
