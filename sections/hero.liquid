@@ -1,37 +1,34 @@
 {% assign show_announcement = section.settings.show_announcement %}
 
 <div class="relative min-h-screen bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50">
-  <!-- Background pattern -->
-  <div class="absolute inset-0 opacity-5 pattern-dots"></div>
-  
   <!-- Decorative circles -->
   <div class="absolute top-20 right-20 w-96 h-96 rounded-full bg-gradient-to-br from-emerald-200/30 to-teal-200/30 blur-3xl animate-float"></div>
   <div class="absolute bottom-20 left-20 w-96 h-96 rounded-full bg-gradient-to-br from-cyan-200/30 to-blue-200/30 blur-3xl animate-float-delay"></div>
   
-  <div class="relative max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 pt-32 pb-24 sm:pt-40 sm:pb-32">
-    <div class="grid lg:grid-cols-2 gap-12 lg:gap-24 items-center">
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid lg:grid-cols-2 gap-8 lg:gap-16 min-h-screen items-center">
       <!-- Text Content -->
-      <div class="relative z-10">
+      <div class="relative z-10 pt-24 md:pt-32 lg:pt-0 text-center lg:text-left">
         <div class="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-emerald-500/10 to-teal-500/10 backdrop-blur-sm">
           <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-600 font-medium">
             100% HOMEGROWN
           </span>
         </div>
         
-        <h1 class="mt-8 text-6xl sm:text-7xl lg:text-8xl font-bold leading-none mb-6">
+        <h1 class="mt-6 lg:mt-8 text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold leading-none mb-4 lg:mb-6">
           <span class="block text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-600">
             {{ section.settings.heading }}
           </span>
-          <span class="block mt-2 text-5xl sm:text-6xl lg:text-7xl text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-600">
+          <span class="block mt-2 text-4xl sm:text-5xl lg:text-6xl xl:text-7xl text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-600">
             {{ section.settings.subheading }}
           </span>
         </h1>
         
-        <p class="text-lg sm:text-xl text-emerald-800/80 max-w-xl mb-12 leading-relaxed">
+        <p class="text-base sm:text-lg lg:text-xl text-emerald-800/80 max-w-xl mx-auto lg:mx-0 mb-8 lg:mb-12 leading-relaxed">
           {{ section.settings.description }}
         </p>
         
-        <div class="flex flex-wrap gap-4">
+        <div class="flex flex-wrap justify-center lg:justify-start gap-4">
           {% if section.settings.button_label != blank %}
             <a href="{{ section.settings.button_link }}" 
                class="group relative inline-flex items-center px-8 py-4 rounded-full overflow-hidden">
@@ -49,9 +46,9 @@
       </div>
       
       <!-- Image -->
-      <div class="relative">
+      <div class="relative order-first lg:order-last">
         {% if section.settings.image != blank %}
-          <div class="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl transform hover:scale-[1.02] transition-transform duration-500">
+          <div class="relative aspect-square lg:aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl transform hover:scale-[1.02] transition-transform duration-500 max-w-lg mx-auto">
             <div class="absolute inset-0 bg-gradient-to-br from-emerald-500/10 to-teal-500/10 mix-blend-overlay"></div>
             <img 
               src="{{ section.settings.image | img_url: '1000x' }}" 
@@ -60,7 +57,7 @@
             >
           </div>
         {% else %}
-          <div class="aspect-[4/5] rounded-3xl bg-gradient-to-br from-emerald-100 to-teal-100"></div>
+          <div class="aspect-square lg:aspect-[4/5] rounded-3xl bg-gradient-to-br from-emerald-100 to-teal-100 max-w-lg mx-auto"></div>
         {% endif %}
         
         <!-- Decorative elements -->
@@ -120,11 +117,6 @@
 {% endschema %}
 
 {% stylesheet %}
-.pattern-dots {
-  background-image: radial-gradient(#065F46 1px, transparent 1px);
-  background-size: 20px 20px;
-}
-
 @keyframes float {
   0%, 100% { transform: translateY(0) rotate(0); }
   50% { transform: translateY(-20px) rotate(5deg); }
