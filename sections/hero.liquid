@@ -11,49 +11,55 @@
         class="absolute inset-0 w-full h-full object-cover opacity-40"
       >
     {% endif %}
+    <div class="absolute inset-0 bg-emerald-900/80"></div>
   </div>
 
   <!-- Content -->
-  <div class="relative max-w-7xl mx-auto px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
+  <div class="relative max-w-4xl mx-auto px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
     <!-- Main Content Area -->
-    <div class="max-w-3xl">
+    <div class="text-center">
       <!-- Main Heading -->
-      <h1 class="text-4xl md:text-5xl font-bold text-white mb-8 font-inter leading-tight tracking-tight">
+      <h1 class="text-[3.5rem] font-bold text-white mb-12 font-inter leading-[1.1] tracking-tight">
         Start Your Wellness<br>Journey Today
       </h1>
 
       <!-- Description -->
-      <p class="text-xl text-white/90 mb-12 font-inter leading-relaxed">
+      <p class="text-xl text-white mb-16 font-inter leading-relaxed max-w-2xl mx-auto">
         Experience the power of natural detoxification. Our carefully crafted programs help cleanse your body, boost energy levels, and restore your natural balance.
       </p>
 
       <!-- Features -->
-      <div class="grid grid-cols-3 gap-8 mb-12">
-        <div class="flex items-center text-white/90 font-inter">
-          <svg class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-            <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke-width="2"/>
-          </svg>
-          Reset Your Body
+      <div class="flex justify-center space-x-12 mb-16">
+        <div class="text-white font-inter text-lg flex flex-col items-center">
+          <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center mb-3">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke-width="2"/>
+            </svg>
+          </div>
+          Reset<br>Your Body
         </div>
-        <div class="flex items-center text-white/90 font-inter">
-          <svg class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-            <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke-width="2"/>
-            <path d="M8 12L11 15L16 9" stroke-width="2"/>
-          </svg>
-          Natural Ingredients
+        <div class="text-white font-inter text-lg flex flex-col items-center">
+          <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center mb-3">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke-width="2"/>
+            </svg>
+          </div>
+          Natural<br>Ingredients
         </div>
-        <div class="flex items-center text-white/90 font-inter">
-          <svg class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-            <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" stroke-width="2"/>
-          </svg>
-          Boost Energy
+        <div class="text-white font-inter text-lg flex flex-col items-center">
+          <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center mb-3">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" stroke-width="2"/>
+            </svg>
+          </div>
+          Boost<br>Energy
         </div>
       </div>
 
       <!-- Find Your Perfect Detox Button -->
       <button id="quiz-trigger"
-              class="inline-flex items-center px-8 py-4 rounded-full bg-white text-emerald-900 text-lg font-medium hover:bg-white/90 transition-all duration-200 transform hover:-translate-y-0.5 font-inter">
-        <svg class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              class="inline-flex items-center px-8 py-4 rounded-full bg-white text-emerald-900 text-lg font-medium hover:bg-white/90 transition-all duration-200 transform hover:-translate-y-0.5 font-inter shadow-lg">
+        <svg class="w-5 h-5 mr-2 text-emerald-600" viewBox="0 0 24 24" fill="none" stroke="currentColor">
           <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke-width="2"/>
         </svg>
         Find Your Perfect Detox
