@@ -60,6 +60,7 @@
           "title": "Featured Products",
           "collection": "seamoss",
           "products_to_show": 8,
+          "background_opacity": 60,
           "show_view_all": true
         }
       },
