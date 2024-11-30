@@ -2,16 +2,9 @@
 
 <div class="bg-white">
   <div class="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
-    <div class="text-center mb-12">
-      <h2 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-        {{ section.settings.title }}
-      </h2>
-      {% if section.settings.description != blank %}
-        <p class="mt-4 max-w-3xl mx-auto text-base text-gray-500">
-          {{ section.settings.description }}
-        </p>
-      {% endif %}
-    </div>
+    <h2 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl text-center mb-12">
+      {{ section.settings.title }}
+    </h2>
 
     {% if collection == empty or collection.products_count == 0 %}
       <div class="text-center py-12 px-4">
@@ -30,58 +23,33 @@
                 {% else %}
                   {{ 'product-1' | placeholder_svg_tag: 'w-full h-full object-center object-cover' }}
                 {% endif %}
-
-                {% unless product.available %}
-                  <div class="absolute top-0 right-0 m-2">
-                    <span class="px-2 py-1 text-xs font-bold text-white bg-gray-900 bg-opacity-75 rounded">
-                      {{ 'products.product.sold_out' | t }}
-                    </span>
-                  </div>
-                {% endunless %}
               </div>
 
-              <div class="mt-4">
-                <div class="flex items-center justify-between mb-2">
-                  <h3 class="text-sm text-gray-700">
-                    <a href="{{ product.url }}">
-                      {{ product.title }}
-                    </a>
-                  </h3>
-                  <p class="text-sm font-medium text-gray-900">
-                    {% if product.compare_at_price > product.price %}
-                      <span class="text-red-600">{{ product.price | money }}</span>
-                      <span class="text-gray-500 line-through ml-2">{{ product.compare_at_price | money }}</span>
-                    {% else %}
-                      {{ product.price | money }}
-                    {% endif %}
-                  </p>
+              <div class="mt-4 space-y-2">
+                <div class="flex items-center justify-between">
+                  <h3 class="text-sm text-gray-700">{{ product.title }}</h3>
+                  <p class="text-sm font-medium text-gray-900">{{ product.price | money }}</p>
                 </div>
 
-                {% if section.settings.show_vendor and product.vendor != blank %}
-                  <p class="mt-1 text-sm text-gray-500">{{ product.vendor }}</p>
-                {% endif %}
-
-                {% if section.settings.show_description %}
-                  <p class="mt-1 text-sm text-gray-500">
+                {% if product.description != blank %}
+                  <p class="text-sm text-gray-500">
                     {{ product.description | strip_html | truncatewords: 15 }}
                   </p>
                 {% endif %}
 
-                <!-- Primary Button -->
-                {% if section.settings.show_primary_button %}
+                <div class="space-y-2 pt-4">
+                  <!-- Primary Button -->
                   <a href="{{ product.url }}" 
-                     class="mt-4 w-full inline-flex items-center justify-center px-4 py-2 rounded-full {% if section.settings.button_style == 'gradient' %}bg-gradient-to-r from-emerald-600 to-teal-600 text-white hover:opacity-90{% else %}bg-emerald-600 text-white hover:bg-emerald-700{% endif %} transition-all duration-200 text-sm font-medium">
-                    {{ section.settings.primary_button_text | replace: '[price]', product.price | money }}
+                     class="w-full inline-flex items-center justify-center px-4 py-2 rounded-full bg-gradient-to-r from-emerald-600 to-teal-600 text-white hover:opacity-90 transition-all duration-200 text-sm font-medium">
+                    Add to Cart - {{ product.price | money }}
                   </a>
-                {% endif %}
 
-                <!-- Secondary Button -->
-                {% if section.settings.show_secondary_button %}
+                  <!-- Secondary Button -->
                   <a href="{{ product.url }}" 
-                     class="mt-2 w-full inline-flex items-center justify-center px-4 py-2 rounded-full border border-emerald-600 text-emerald-600 hover:bg-emerald-50 transition-all duration-200 text-sm font-medium">
-                    {{ section.settings.secondary_button_text }}
+                     class="w-full inline-flex items-center justify-center px-4 py-2 rounded-full border border-emerald-600 text-emerald-600 hover:bg-emerald-50 transition-all duration-200 text-sm font-medium">
+                    Learn More
                   </a>
-                {% endif %}
+                </div>
               </div>
             </div>
           </div>
@@ -91,8 +59,8 @@
       {% if section.settings.show_view_all and collection.products_count > section.settings.products_to_show %}
         <div class="text-center mt-12">
           <a href="{{ collection.url }}" 
-             class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-gradient-to-r from-emerald-600 to-teal-600 hover:opacity-90">
-            {{ section.settings.view_all_text }}
+             class="inline-flex items-center px-6 py-3 rounded-full bg-gradient-to-r from-emerald-600 to-teal-600 text-white hover:opacity-90 transition-all duration-200">
+            View All Products
           </a>
         </div>
       {% endif %}
@@ -111,11 +79,6 @@
       "default": "Featured Products"
     },
     {
-      "type": "textarea",
-      "id": "description",
-      "label": "Description"
-    },
-    {
       "type": "collection",
       "id": "collection",
       "label": "Collection"
@@ -130,81 +93,10 @@
       "label": "Products to show"
     },
     {
-      "type": "header",
-      "content": "Product Information"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_vendor",
-      "label": "Show product vendor",
-      "default": false
-    },
-    {
-      "type": "checkbox",
-      "id": "show_description",
-      "label": "Show product description",
-      "default": true
-    },
-    {
-      "type": "header",
-      "content": "Button Settings"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_primary_button",
-      "label": "Show primary button",
-      "default": true
-    },
-    {
-      "type": "text",
-      "id": "primary_button_text",
-      "label": "Primary button text",
-      "default": "Add to Cart - [price]",
-      "info": "Use [price] to display product price"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_secondary_button",
-      "label": "Show secondary button",
-      "default": true
-    },
-    {
-      "type": "text",
-      "id": "secondary_button_text",
-      "label": "Secondary button text",
-      "default": "Learn More"
-    },
-    {
-      "type": "select",
-      "id": "button_style",
-      "label": "Button style",
-      "options": [
-        {
-          "value": "solid",
-          "label": "Solid Color"
-        },
-        {
-          "value": "gradient",
-          "label": "Gradient"
-        }
-      ],
-      "default": "gradient"
-    },
-    {
-      "type": "header",
-      "content": "View All Button"
-    },
-    {
       "type": "checkbox",
       "id": "show_view_all",
       "label": "Show 'View all' button",
       "default": true
-    },
-    {
-      "type": "text",
-      "id": "view_all_text",
-      "label": "View all button text",
-      "default": "View all products"
     }
   ],
   "presets": [
@@ -212,11 +104,7 @@
       "name": "Featured Products",
       "settings": {
         "products_to_show": 8,
-        "show_vendor": false,
-        "show_description": true,
-        "show_view_all": true,
-        "show_primary_button": true,
-        "show_secondary_button": true
+        "show_view_all": true
       }
     }
   ]
