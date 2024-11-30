@@ -1,17 +1,28 @@
 {% if section.settings.show_announcement %}
-  <div class="relative bg-emerald-900">
-    <div class="max-w-7xl mx-auto py-3 px-6 sm:px-8 lg:px-12">
-      <div class="text-center">
+  <div class="relative overflow-hidden">
+    <!-- Gradient background -->
+    <div class="absolute inset-0 bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600"></div>
+    
+    <!-- Shimmer effect -->
+    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-shimmer"></div>
+    
+    <div class="relative px-4 py-3">
+      <div class="max-w-7xl mx-auto text-center">
         {% if section.settings.announcement_link != blank %}
           <a href="{{ section.settings.announcement_link }}" 
-             class="group inline-flex items-center justify-center space-x-3 text-sm font-medium text-white/90 hover:text-white transition-colors duration-200">
-            <span>{{ section.settings.announcement_text }}</span>
-            <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+             class="group inline-flex items-center justify-center space-x-3 text-sm font-medium text-white hover:text-white/90 transition-colors duration-200">
+            <span class="inline-flex items-center">
+              <span class="animate-pulse-soft mr-2">✨</span>
+              {{ section.settings.announcement_text }}
+            </span>
+            <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-200" 
+                 fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
             </svg>
           </a>
         {% else %}
-          <p class="text-sm font-medium text-white/90">
+          <p class="inline-flex items-center text-sm font-medium text-white">
+            <span class="animate-pulse-soft mr-2">✨</span>
             {{ section.settings.announcement_text }}
           </p>
         {% endif %}
@@ -44,3 +55,33 @@
   ]
 }
 {% endschema %}
+
+{% stylesheet %}
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 3s infinite;
+}
+
+@keyframes pulse-soft {
+  0%, 100% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+.animate-pulse-soft {
+  animation: pulse-soft 2s ease-in-out infinite;
+}
+{% endstylesheet %}
