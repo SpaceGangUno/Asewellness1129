@@ -31,7 +31,7 @@
 
     <!-- Transform Your Life Button -->
     <div class="text-center">
-      <button onclick="window.location.href='/quiz'"
+      <button id="quiz-trigger"
               class="inline-flex items-center px-8 py-4 rounded-full bg-white text-emerald-900 text-lg font-semibold hover:bg-white/90 transition-all duration-200 transform hover:-translate-y-0.5">
         <svg class="w-6 h-6 mr-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -66,12 +66,6 @@
       "unit": "%",
       "label": "Overlay Opacity",
       "default": 70
-    },
-    {
-      "type": "url",
-      "id": "quiz_url",
-      "label": "Quiz URL",
-      "default": "/quiz"
     }
   ],
   "presets": [
@@ -82,3 +76,12 @@
   ]
 }
 {% endschema %}
+
+<script>
+document.getElementById('quiz-trigger').addEventListener('click', function() {
+  // Trigger quiz modal or navigation
+  if (window.openDetoxQuiz) {
+    window.openDetoxQuiz();
+  }
+});
+</script>
