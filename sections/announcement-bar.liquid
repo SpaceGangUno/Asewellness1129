@@ -1,25 +1,23 @@
 {% if section.settings.show_announcement %}
   <div class="relative overflow-hidden">
-    <!-- Animated background gradient -->
-    <div class="absolute inset-0 bg-natural-gradient opacity-90"></div>
+    <!-- Gradient background -->
+    <div class="absolute inset-0 bg-gradient-to-r from-emerald-400 to-blue-400"></div>
     
     <!-- Shimmer effect -->
     <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer"></div>
     
-    <div class="relative bg-transparent text-white px-4 py-3">
-      <div class="max-w-7xl mx-auto text-center text-sm font-medium">
+    <div class="relative px-4 py-3">
+      <div class="max-w-7xl mx-auto text-center">
         {% if section.settings.announcement_link != blank %}
           <a href="{{ section.settings.announcement_link }}" 
-             class="inline-flex items-center space-x-2 hover:opacity-75 transition-opacity duration-300">
+             class="inline-flex items-center space-x-2 text-white/90 hover:text-white transition-all duration-300 text-sm font-medium">
             <span class="inline-block animate-pulse-soft">✨</span>
-            <span class="text-white/90 hover:text-white transition-colors duration-300">
-              {{ section.settings.announcement_text }}
-            </span>
+            <span>{{ section.settings.announcement_text }}</span>
           </a>
         {% else %}
-          <p class="flex items-center justify-center space-x-2">
+          <p class="flex items-center justify-center space-x-2 text-white/90 text-sm font-medium">
             <span class="inline-block animate-pulse-soft">✨</span>
-            <span class="text-white/90">{{ section.settings.announcement_text }}</span>
+            <span>{{ section.settings.announcement_text }}</span>
           </p>
         {% endif %}
       </div>
@@ -63,7 +61,7 @@
 }
 
 .animate-shimmer {
-  animation: shimmer 2.5s infinite;
+  animation: shimmer 3s infinite;
 }
 
 @keyframes pulse-soft {
