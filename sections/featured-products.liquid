@@ -1,14 +1,14 @@
 {% assign collection = collections[section.settings.collection] %}
 
-<div class="bg-white">
+<div class="bg-gradient-to-br from-green-400 via-teal-400 to-blue-400">
   <div class="max-w-2xl mx-auto pt-8 pb-16 px-4 sm:pt-12 sm:pb-24 sm:px-6 lg:max-w-7xl lg:px-8">
-    <h2 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl text-center mb-12">
+    <h2 class="text-3xl font-extrabold tracking-tight text-white sm:text-4xl text-center mb-12">
       {{ section.settings.title }}
     </h2>
 
     {% if collection == empty or collection.products_count == 0 %}
       <div class="text-center py-12 px-4">
-        <p class="text-gray-500">{{ 'collections.general.no_matches' | t }}</p>
+        <p class="text-gray-100">{{ 'collections.general.no_matches' | t }}</p>
       </div>
     {% else %}
       <div class="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
