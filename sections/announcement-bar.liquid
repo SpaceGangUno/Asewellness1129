@@ -1,23 +1,18 @@
 {% if section.settings.show_announcement %}
-  <div class="relative overflow-hidden">
-    <!-- Gradient background -->
-    <div class="absolute inset-0 bg-gradient-to-r from-emerald-400 to-blue-400"></div>
-    
-    <!-- Shimmer effect -->
-    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer"></div>
-    
-    <div class="relative px-4 py-3">
-      <div class="max-w-7xl mx-auto text-center">
+  <div class="relative bg-emerald-900">
+    <div class="max-w-7xl mx-auto py-3 px-6 sm:px-8 lg:px-12">
+      <div class="text-center">
         {% if section.settings.announcement_link != blank %}
           <a href="{{ section.settings.announcement_link }}" 
-             class="inline-flex items-center space-x-2 text-white/90 hover:text-white transition-all duration-300 text-sm font-medium">
-            <span class="inline-block animate-pulse-soft">✨</span>
+             class="group inline-flex items-center justify-center space-x-3 text-sm font-medium text-white/90 hover:text-white transition-colors duration-200">
             <span>{{ section.settings.announcement_text }}</span>
+            <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
           </a>
         {% else %}
-          <p class="flex items-center justify-center space-x-2 text-white/90 text-sm font-medium">
-            <span class="inline-block animate-pulse-soft">✨</span>
-            <span>{{ section.settings.announcement_text }}</span>
+          <p class="text-sm font-medium text-white/90">
+            {{ section.settings.announcement_text }}
           </p>
         {% endif %}
       </div>
@@ -49,33 +44,3 @@
   ]
 }
 {% endschema %}
-
-{% stylesheet %}
-@keyframes shimmer {
-  0% {
-    transform: translateX(-100%);
-  }
-  100% {
-    transform: translateX(100%);
-  }
-}
-
-.animate-shimmer {
-  animation: shimmer 3s infinite;
-}
-
-@keyframes pulse-soft {
-  0%, 100% {
-    opacity: 0.8;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.1);
-  }
-}
-
-.animate-pulse-soft {
-  animation: pulse-soft 2s ease-in-out infinite;
-}
-{% endstylesheet %}

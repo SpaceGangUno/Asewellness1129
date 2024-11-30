@@ -1,56 +1,57 @@
 {% assign show_announcement = section.settings.show_announcement %}
 
-<div class="relative overflow-hidden {% if show_announcement %}mt-16{% else %}mt-24{% endif %}">
-  <!-- Decorative Elements -->
-  <div class="absolute -top-40 -right-40 w-96 h-96 rounded-full bg-gradient-to-r from-emerald-400/30 to-blue-400/30 blur-3xl animate-float"></div>
-  <div class="absolute -bottom-40 -left-40 w-96 h-96 rounded-full bg-gradient-to-r from-pink-400/30 to-purple-400/30 blur-3xl animate-float" style="animation-delay: 1s"></div>
+<div class="relative min-h-screen bg-[#F5F2EA]">
+  <!-- Background pattern -->
+  <div class="absolute inset-0 opacity-10 pattern-dots"></div>
   
-  <div class="max-w-7xl mx-auto">
-    <div class="relative z-10 pb-8 sm:pb-16 md:pb-20 lg:w-full lg:pb-28 xl:pb-32">
-      <div class="relative pt-6 px-4 sm:px-6 lg:px-8"></div>
-      
-      <main class="mt-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
-        <div class="sm:text-center lg:text-left animate-fade-in">
-          <div class="inline-flex items-center px-6 py-2 rounded-full bg-emerald-400/10 backdrop-blur-sm mb-8 transform hover:scale-105 transition-all duration-300">
-            <span class="text-lg font-medium bg-gradient-to-r from-emerald-400 to-blue-400 bg-clip-text text-transparent">
-              ✨ Transform Your Life Naturally
-            </span>
-          </div>
-          
-          <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-8">
-            <span class="block bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
-              {{ section.settings.heading }}
-            </span>
-            <span class="block bg-gradient-to-r from-pink-400 to-purple-400 bg-clip-text text-transparent">
-              {{ section.settings.subheading }}
-            </span>
-          </h1>
-          
-          <p class="mt-3 text-xl text-gray-600 sm:mt-5 sm:max-w-xl sm:mx-auto md:mt-5 md:text-2xl lg:mx-0 leading-relaxed">
-            {{ section.settings.description }}
-          </p>
-          
-          <div class="mt-10 sm:flex sm:justify-center lg:justify-start gap-6">
-            {% if section.settings.button_label != blank %}
-              <div class="transform hover:scale-105 transition-all duration-300">
-                <a href="{{ section.settings.button_link }}" 
-                   class="w-full flex items-center justify-center px-8 py-4 text-lg font-medium rounded-full text-white bg-gradient-to-r from-emerald-400 to-blue-400 hover:opacity-90 shadow-lg hover:shadow-xl transition-all duration-300">
-                  {{ section.settings.button_label }}
-                </a>
-              </div>
-            {% endif %}
-            
-            {% if section.settings.secondary_button_label != blank %}
-              <div class="mt-3 sm:mt-0 transform hover:scale-105 transition-all duration-300">
-                <a href="{{ section.settings.secondary_button_link }}" 
-                   class="w-full flex items-center justify-center px-8 py-4 text-lg font-medium rounded-full text-gray-700 bg-white/80 backdrop-blur-sm hover:bg-white/90 shadow-md hover:shadow-lg transition-all duration-300">
-                  {{ section.settings.secondary_button_label }}
-                </a>
-              </div>
-            {% endif %}
-          </div>
+  <div class="relative max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 pt-32 pb-24 sm:pt-40 sm:pb-32">
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-24 items-center">
+      <!-- Text Content -->
+      <div class="relative z-10">
+        <div class="inline-flex items-center px-4 py-2 rounded-full bg-emerald-900/10 text-emerald-900 text-sm font-medium mb-8">
+          100% HOMEGROWN
         </div>
-      </main>
+        
+        <h1 class="text-6xl sm:text-7xl lg:text-8xl font-bold text-emerald-900 leading-none mb-6">
+          {{ section.settings.heading }}
+          <span class="block mt-2 text-5xl sm:text-6xl lg:text-7xl">{{ section.settings.subheading }}</span>
+        </h1>
+        
+        <p class="text-lg sm:text-xl text-emerald-800/80 max-w-xl mb-12">
+          {{ section.settings.description }}
+        </p>
+        
+        <div class="flex flex-wrap gap-4">
+          {% if section.settings.button_label != blank %}
+            <a href="{{ section.settings.button_link }}" 
+               class="inline-flex items-center px-8 py-4 rounded-full bg-emerald-900 text-white text-lg font-medium hover:bg-emerald-800 transition-colors duration-200">
+              {{ section.settings.button_label }}
+              <svg class="ml-2 -mr-1 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+            </a>
+          {% endif %}
+        </div>
+      </div>
+      
+      <!-- Image -->
+      <div class="relative">
+        {% if section.settings.image != blank %}
+          <div class="relative aspect-[4/5] rounded-2xl overflow-hidden">
+            <img 
+              src="{{ section.settings.image | img_url: '1000x' }}" 
+              alt="{{ section.settings.image.alt | escape }}"
+              class="absolute inset-0 w-full h-full object-cover"
+            >
+          </div>
+        {% else %}
+          <div class="aspect-[4/5] rounded-2xl bg-emerald-100"></div>
+        {% endif %}
+        
+        <!-- Decorative elements -->
+        <div class="absolute -top-4 -right-4 w-24 h-24 rounded-full bg-emerald-100"></div>
+        <div class="absolute -bottom-4 -left-4 w-32 h-32 rounded-full bg-emerald-50"></div>
+      </div>
     </div>
   </div>
 </div>
@@ -63,25 +64,25 @@
       "type": "text",
       "id": "heading",
       "label": "Heading",
-      "default": "Transform Your Health"
+      "default": "THE PURE"
     },
     {
       "type": "text",
       "id": "subheading",
       "label": "Subheading",
-      "default": "With Natural Solutions"
+      "default": "GOODNESS"
     },
     {
       "type": "textarea",
       "id": "description",
       "label": "Description",
-      "default": "Discover our range of natural wellness products designed to help you achieve optimal health and vitality."
+      "default": "MORE VIBRANT LIFESTYLE STARTS WITH ASÉ! EMBRACE THE PURITY OF NATURE WITH OUR EXQUISITE LINE OF NATURAL JUICES!"
     },
     {
       "type": "text",
       "id": "button_label",
       "label": "Button label",
-      "default": "Shop Now"
+      "default": "EXPLORE TASTES"
     },
     {
       "type": "url",
@@ -89,15 +90,9 @@
       "label": "Button link"
     },
     {
-      "type": "text",
-      "id": "secondary_button_label",
-      "label": "Secondary button label",
-      "default": "Learn More"
-    },
-    {
-      "type": "url",
-      "id": "secondary_button_link",
-      "label": "Secondary button link"
+      "type": "image_picker",
+      "id": "image",
+      "label": "Hero image"
     }
   ],
   "presets": [
@@ -110,27 +105,8 @@
 {% endschema %}
 
 {% stylesheet %}
-@keyframes float {
-  0%, 100% { transform: translateY(0) rotate(0); }
-  50% { transform: translateY(-20px) rotate(5deg); }
-}
-
-.animate-float {
-  animation: float 20s ease-in-out infinite;
-}
-
-@keyframes fade-in {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-fade-in {
-  animation: fade-in 0.8s ease-out forwards;
+.pattern-dots {
+  background-image: radial-gradient(#065F46 1px, transparent 1px);
+  background-size: 20px 20px;
 }
 {% endstylesheet %}
