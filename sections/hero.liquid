@@ -1,53 +1,48 @@
 {% assign show_announcement = section.settings.show_announcement %}
 {% assign overlay_opacity = section.settings.overlay_opacity | times: 0.01 %}
 
-<div class="relative min-h-screen bg-gradient-to-b from-emerald-50 to-cyan-50/50">
-  <!-- Main Content -->
-  <div class="relative max-w-7xl mx-auto px-4">
-    <div class="flex flex-col min-h-screen">
-      <!-- Product Image Section -->
-      <div class="relative flex-1 flex items-center justify-center pt-20 pb-8">
-        {% if section.settings.image != blank %}
-          <div class="relative w-full max-w-md mx-auto">
-            <div class="relative rounded-3xl overflow-hidden">
-              <!-- Green overlay with customizable opacity -->
-              <div class="absolute inset-0 bg-emerald-600 mix-blend-multiply z-10" style="opacity: {{ overlay_opacity }}"></div>
-              
-              <img 
-                src="{{ section.settings.image | img_url: '800x' }}" 
-                alt="{{ section.settings.image.alt | escape }}"
-                class="relative w-full h-auto object-contain"
-              >
-            </div>
-          </div>
-        {% endif %}
-      </div>
+<div class="relative min-h-screen">
+  <!-- Background Image with Overlay -->
+  <div class="absolute inset-0">
+    {% if section.settings.image != blank %}
+      <img 
+        src="{{ section.settings.image | img_url: '2000x' }}" 
+        alt="{{ section.settings.image.alt | escape }}"
+        class="absolute inset-0 w-full h-full object-cover"
+      >
+      <!-- Green overlay with customizable opacity -->
+      <div class="absolute inset-0 bg-gradient-to-b from-emerald-600 to-emerald-800" 
+           style="opacity: {{ overlay_opacity }}; mix-blend-mode: multiply;"></div>
+    {% else %}
+      <div class="absolute inset-0 bg-gradient-to-b from-emerald-50 to-cyan-50"></div>
+    {% endif %}
+  </div>
 
-      <!-- Text Content Section -->
-      <div class="relative pb-16 text-center">
-        <div class="inline-flex items-center px-4 py-1.5 rounded-full bg-emerald-100/50 text-emerald-800 text-sm font-medium mb-4">
-          100% HOMEGROWN
-        </div>
-        
-        <h1 class="text-5xl sm:text-6xl font-bold text-emerald-800 leading-none mb-4">
-          <span class="block">{{ section.settings.heading }}</span>
-          <span class="block">{{ section.settings.subheading }}</span>
-        </h1>
-        
-        <p class="text-lg text-emerald-700/80 max-w-xl mx-auto mb-8 leading-relaxed px-4">
-          {{ section.settings.description }}
-        </p>
-        
-        {% if section.settings.button_label != blank %}
-          <a href="{{ section.settings.button_link }}" 
-             class="inline-flex items-center px-6 py-3 rounded-full bg-emerald-700 text-white text-base font-medium hover:bg-emerald-800 transition-colors duration-200">
-            {{ section.settings.button_label }}
-            <svg class="ml-2 -mr-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-            </svg>
-          </a>
-        {% endif %}
+  <!-- Content -->
+  <div class="relative min-h-screen flex flex-col items-center justify-center px-4 py-20">
+    <div class="max-w-7xl mx-auto w-full text-center">
+      <div class="inline-flex items-center px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-sm text-white text-sm font-medium mb-6">
+        100% HOMEGROWN
       </div>
+      
+      <h1 class="text-5xl sm:text-6xl font-bold text-white leading-none mb-6">
+        <span class="block">{{ section.settings.heading }}</span>
+        <span class="block mt-2">{{ section.settings.subheading }}</span>
+      </h1>
+      
+      <p class="text-lg text-white/90 max-w-xl mx-auto mb-8 leading-relaxed">
+        {{ section.settings.description }}
+      </p>
+      
+      {% if section.settings.button_label != blank %}
+        <a href="{{ section.settings.button_link }}" 
+           class="inline-flex items-center px-6 py-3 rounded-full bg-white text-emerald-800 text-base font-medium hover:bg-white/90 transition-colors duration-200">
+          {{ section.settings.button_label }}
+          <svg class="ml-2 -mr-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+          </svg>
+        </a>
+      {% endif %}
     </div>
   </div>
 </div>
@@ -88,7 +83,7 @@
     {
       "type": "image_picker",
       "id": "image",
-      "label": "Hero image"
+      "label": "Background Image"
     },
     {
       "type": "range",
@@ -97,8 +92,8 @@
       "max": 100,
       "step": 5,
       "unit": "%",
-      "label": "Green Overlay Opacity",
-      "default": 10
+      "label": "Overlay Opacity",
+      "default": 70
     },
     {
       "type": "header",
